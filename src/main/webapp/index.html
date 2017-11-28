@@ -47,18 +47,23 @@
                     success: function (result) {
                         //alert("123");
                         //result是服务器返回的Json字符串转成的js
+
                         for(var i=0;i<result.length;i++) {
                             var id = result[i].id;
                             var name = result[i].name;
                             //拼成li
 
-                            var s_li = "<td>"+name+"</td>";
+                            var s_li =  "<tr>"
+                                    +   "<td>"+name+"</td>"
+                                    +   "<td>"+id+"</td>"
+                                    +   "</tr>";
                             var $li = $(s_li); //将字符串转成jquery
 
                             $li.data("noteId",id); //将id值藏到$li中
                             //将$li添加到ul列表中
                             $("#student_list").append($li);
                         }
+
                     }
                 });
             });
@@ -68,19 +73,43 @@
 </head>
 
 <body>
-<input id="loadStudentBtn" type="button" value ="显示学生列表">
-<input id="showStudentBtn" type="button" value ="显示学生信息">
-<hr/>
-<table class="table table-hover">
-    <thead>
-        <tr id="table_list">
-        </tr>
-    </thead>
-    <tbody>
-        <tr id="student_list">
 
-        </tr>
-    </tbody>
-</table>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group" >
+                <button type="button" id="loadStudentBtn" class="btn btn-default">显示学生列表</button>
+                <button type="button" id="showStudentBtn" class="btn btn-default">显示学生信息</button>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="exampleInputName2">Name</label>
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                    </div>
+                    <button type="submit" class="btn btn-default">Send invitation</button>
+                </form>
+            </div>
+            <br>
+            <br>
+            <div>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr id="table_list">
+                        </tr>
+                    </thead>
+                    <tbody  id="student_list">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

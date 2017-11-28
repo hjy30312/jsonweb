@@ -2,7 +2,6 @@ package com.hjy.servlet;
 
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.hjy.model.Note;
 
 import javax.servlet.ServletException;

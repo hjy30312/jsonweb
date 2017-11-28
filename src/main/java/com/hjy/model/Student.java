@@ -6,9 +6,17 @@ import java.io.Serializable;
  * @author hjy
  * @create 2017/11/19
  **/
-public class Note implements Serializable{
+public class Student implements Serializable{
     private String id;
     private String name;
+    private String sno;
+    public String getSno() {
+        return sno;
+    }
+
+    public void setSno(String sno) {
+        this.sno = sno;
+    }
 
     public String getId() {
         return id;
