@@ -5,13 +5,13 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-    <servlet-name>loadnote</servlet-name>
+    <servlet-name>loadstu</servlet-name>
     <servlet-class>
-      com.hjy.servlet.LoadNoteServlet
+      com.hjy.servlet.LoadStudentServlet
     </servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>loadnote</servlet-name>
+    <servlet-name>loadstu</servlet-name>
     <url-pattern>/ajax.do</url-pattern>
   </servlet-mapping>
   

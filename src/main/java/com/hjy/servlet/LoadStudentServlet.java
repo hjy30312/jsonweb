@@ -2,7 +2,7 @@ package com.hjy.servlet;
 
 
 import com.alibaba.fastjson.JSONArray;
-import com.hjy.model.Note;
+import com.hjy.model.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,16 +17,16 @@ import java.util.List;
  * @author hjy
  * @create 2017/11/19
  **/
-public class LoadNoteServlet extends HttpServlet {
+public class LoadStudentServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest req,
                         HttpServletResponse res) throws ServletException, IOException {
         //将笔记信息以JSON格式输出
-        List<Note> list = new ArrayList<Note>();
-        Note note = new Note();
+        List<Student> list = new ArrayList<Student>();
+        Student note = new Student();
         note.setId("01");
         note.setName("ID");
-        Note note1 = new Note();
+        Student note1 = new Student();
         note1.setId("02");
         note1.setName("Name");
         list.add(note);
