@@ -10,12 +10,10 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseBean {
-    public static Properties sqlProperties = new Properties();
     private static String driver;
     private static String url;
     private static String user;
     private static String password;
-    private static Connection connection = null;
     private static OracleDataSource ds= null;
 
     /**

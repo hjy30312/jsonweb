@@ -21,7 +21,7 @@ public class LoadStudentServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest req,
                         HttpServletResponse res) throws ServletException, IOException {
-        //将笔记信息以JSON格式输出
+        //将笔记信息以JSON格式输出   需通过DAO层封装实现
         List<Student> list = new ArrayList<Student>();
         Student note = new Student();
         note.setId("01");

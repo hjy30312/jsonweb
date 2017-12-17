@@ -1,9 +1,33 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app  xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+          version="3.0" metadata-complete="false">
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+<display-name>webtest</display-name>
+  <welcome-file-list>
+    <welcome-file>/WEB-INF/login.jsp</welcome-file>
+  </welcome-file-list>
+
+  <servlet>
+    <servlet-name>UserIndex</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserIndex</servlet-name>
+    <url-pattern>/User/Index</url-pattern>
+  </servlet-mapping>
+
+  <!--<servlet>
+    <servlet-name>login</servlet-name>
+    <servlet-class>
+      com.hjy.servlet.StudentLoginServlet
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/User/Login</url-pattern>
+  </servlet-mapping>-->
+<!--
   <servlet>
     <servlet-name>loadstu</servlet-name>
     <servlet-class>
@@ -14,8 +38,6 @@
     <servlet-name>loadstu</servlet-name>
     <url-pattern>/ajax.do</url-pattern>
   </servlet-mapping>
-  
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
+  -->
+
 </web-app>
