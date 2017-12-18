@@ -10,7 +10,7 @@
 
   <servlet>
     <servlet-name>UserIndex</servlet-name>
-    <jsp-file>/index.jsp</jsp-file>
+    <jsp-file>/WEB-INF/userindex.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>UserIndex</servlet-name>

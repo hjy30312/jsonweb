@@ -5,8 +5,9 @@
 <html>
 <head>
     <title>Login Page | Amaze UI Example</title>
-    <link rel="stylesheet" href="<%=path%>/static/plugins/assets/css/amazeui.min.css"/>
-    <script src="<%=path%>/static/plugins/jquery-2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.css" rel="stylesheet">
     <style>
         .header {
             text-align: center;
@@ -20,6 +21,7 @@
             font-size: 14px;
         }
     </style>
+
 </head>
 <body>
 

@@ -41,9 +41,12 @@ CREATE TABLE order_product(
   describe 说明
  */
 CREATE TABLE taobao_product(
-  id PRIMARY KEY,
-  name
-)
+  id INT  PRIMARY KEY ,
+  name VARCHAR NOT NULL ,
+  manufacturer VARCHAR,
+  describe VARCHAR
+);
 
 
 INSERT INTO tb_taobao_user(username, password) VALUES ('123','456');
+insert into taobao_product (id, name, manufacturer, describe) values ('1','玩具','湖北','这是一个玩具');

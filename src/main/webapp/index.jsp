@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+
+<%@ page language="java" pageEncoding="utf-8"%>
+
 <html>
 <head>
-    <title></title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <!--<script src="/static/js/jquery.js"></script>-->
-    <link href="static/plugins/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
-    <script src="static/plugins/jquery-2.1.4/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
 
     <script type="text/javascript">
         /**

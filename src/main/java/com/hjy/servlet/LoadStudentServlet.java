@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.hjy.model.Student;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import java.util.List;
  * @author hjy
  * @create 2017/11/19
  **/
+@WebServlet(name = "UserLoadStudentServlet", urlPatterns = "/ajax.do")
 public class LoadStudentServlet extends HttpServlet {
     @Override
     public void service(HttpServletRequest req,

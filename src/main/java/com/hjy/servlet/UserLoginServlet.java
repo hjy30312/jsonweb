@@ -31,13 +31,15 @@ public class UserLoginServlet extends HttpServlet{
             User user = userService.findUserByUsernamePassword(username,password);
 
             HttpSession session = request.getSession(true);
-            if (user != null) { //找到用户
+            if (user != null) {
+                //找到用户
                 session.setAttribute("user", user);
                 response.sendRedirect(request.getContextPath() + "/User/Index");
-            } /*else {//没有找到用户，可能用户名或密码错误！
+            } else {
+                //没有找到用户，可能用户名或密码错误！
                 session.setAttribute("message", "账号或密码错误!");
                 response.sendRedirect(request.getContextPath() + "/User/Login");
-            }*/
+            }
 
     }
     @Override
