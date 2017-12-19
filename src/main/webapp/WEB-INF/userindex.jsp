@@ -9,38 +9,49 @@
            alert("123");
        });
    </script>
-<!--
+
     <script type="text/javascript">
         $(function () {
             $("#productList").click(function () {
+                alert("123");
                 $.ajax({
                     url: "/productList.do",
                     type: "post",
                     dataType: "json",
                     success: function (result) {
+                        /*
                         for(var i=0; i<result.length;i++) {
                             var id = result[i].id;
                             var name = result[i].name;
                             var manufacturer = result[i].manufacturer;
                             var describe = result[i].describe;
+                           */
+                            var id = result.id;
 
+                            var name = result.name;
+                            var manufacturer = result.manufacturer;
+                            var value = result.value;
+                            var functions = result.functions;
                             //拼成li
                             var s_li = "<tr>"
                                 +   "<td><span class=\"qqq\">"+id+"</span></td>"
                                 +   "<td>" +name+"</td>"
                                 +   "<td>" +manufacturer+"</td>"
-                                +   "<td>" +describe+"</td>"
+                                +   "<td>" +value+"</td>"
+                                +   "<td>" +functions+"</td>"
                                 +   "</tr>";
                             var $li = $(s_li); //将字符串转成jquery
+                            alert(s_li);
                             //将$li添加到ul列表中
                             $("#product_list").append($li);
                         }
-                    }
-                })
-            })
-        })
+
+
+                });
+            });
+        });
     </script>
-    -->
+
 </head>
 <body>
 <div class="row">
@@ -54,7 +65,6 @@
             <button type="button" id="OrderInformation" class="btn btn-default">订单信息</button>
             <br>
             <button type="button" id="n" class="btn btn-default">个人信息</button>
-
         </div>
     </div>
     <!--左边为商品信息-->
@@ -75,17 +85,8 @@
     </div>
 
     <!--右边上面的部分为详细信息-->
-    <div class="col-md-5">
-        <table class="table table-hover table-bordered">
-            <!--动态显示-->
-            <thead>
-            <tr id="table_list">
-            </tr>
-            </thead>
-            <tbody  id="student_list">
+    <div class="col-md-4">
 
-            </tbody>
-        </table>
     </div>
     <!--右边下面为购物车-->
 </div>

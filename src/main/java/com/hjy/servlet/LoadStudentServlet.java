@@ -38,6 +38,8 @@ public class LoadStudentServlet extends HttpServlet {
         //String json_str = json.toString();
        // System.out.println(json_str);
 
+
+
         //将list转成json字符串
         JSONArray jsonArray = (JSONArray) JSONArray.toJSON(list);
         String jsonArr_str = jsonArray.toString();

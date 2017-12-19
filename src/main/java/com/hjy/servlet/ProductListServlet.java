@@ -2,9 +2,9 @@ package com.hjy.servlet;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.hjy.util.DatabaseBean;
+import org.apache.commons.io.IOUtils;
 
-import javax.annotation.Resource;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 
-@WebServlet(name = "productListServlet", urlPatterns = "productList.do")
+@WebServlet(name = "productListServlet", urlPatterns = "/productList.do")
 /**
  * @author: hjy
  * @description: 得到购物车的列表头信息
@@ -25,12 +25,18 @@ public class ProductListServlet extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        /*InputStream in = ProductListServlet.class.getResourceAsStream("/product.json");
-        JSONObject jsonObject = (JSONObject) JSON.toJSON(in);
-        String json = jsonObject.toString();
+        //读取配置文件
+        InputStream in = ProductListServlet.class.getResourceAsStream("/product.json");
+        //利用apache.commons.io.IOUtils 将InputStream转换成String  JsonObject文本数据
+        String result = IOUtils.toString(in,"UTF-8");
+        //将JsonObject数据转换为Json
+        JSONObject object = JSON.parseObject(result);
+        response.setContentType(
+                "text/plain;charset=utf-8"
+        );
         PrintWriter out = response.getWriter();
-        out.print(json);
-        out.close();*/
+        out.print(object);
+        out.close();
 
     }
 
@@ -41,5 +47,21 @@ public class ProductListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
+    }
+
+    /**
+     * 测试取出的json
+     * @param args
+     */
+    public static void main(String[] args) throws IOException {
+        InputStream in = ProductListServlet.class.getResourceAsStream("/product.json");
+        String result = IOUtils.toString(in,"UTF-8");
+        System.out.println(result);
+
+        JSONObject object = JSON.parseObject(result);
+
+        System.out.println(object);
+        System.out.println(object.get("id"));
+
     }
 }
