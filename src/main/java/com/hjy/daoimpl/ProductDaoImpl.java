@@ -53,7 +53,8 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void selectOneProduct(String id) {
+    public Product selectOneProduct(String id) {
 
+        return null;
     }
 }

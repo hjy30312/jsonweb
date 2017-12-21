@@ -26,10 +26,10 @@ public class LoadStudentServlet extends HttpServlet {
         //将笔记信息以JSON格式输出   需通过DAO层封装实现
         List<Student> list = new ArrayList<Student>();
         Student note = new Student();
-        note.setId("01");
+        note.setId(1);
         note.setName("ID");
         Student note1 = new Student();
-        note1.setId("02");
+        note1.setId(2);
         note1.setName("Name");
         list.add(note);
         list.add(note1);
