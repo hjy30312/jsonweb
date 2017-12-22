@@ -39,7 +39,7 @@ public class ValueDaoImpl implements ValueDao {
             rs = psmt.executeQuery();
             while(rs.next()) {
                 Value value = new Value();
-                value.setId(rs.getInt("id"));
+                value.setId(rs.getString("id"));
                 value.setValue(rs.getDouble("value"));
                 value.setEffectiveTime(rs.getTime("effectiveTime"));
                 value.setEffectiveStratTime(rs.getTime("effectiveStratTime "));

@@ -1,5 +1,6 @@
 package com.hjy.model;
 
+import java.sql.Time;
 import java.util.Calendar;
 
 /**
@@ -13,9 +14,9 @@ public class Product_Value {
     private String manufacturer;    //生产厂家
     private String describe;        //说明
     private double value;   //价格
-    private Calendar effectiveTime;     //价格有效时间
-    private Calendar effectiveStratTime;    //有效开始时间
-    private Calendar effectiveEndTime;      //有效结束时间
+    private Time effectiveTime;     //价格有效时间
+    private Time effectiveStratTime;    //有效开始时间
+    private Time effectiveEndTime;      //有效结束时间
 
 
     public String getId() {
@@ -58,27 +59,27 @@ public class Product_Value {
         this.value = value;
     }
 
-    public Calendar getEffectiveTime() {
+    public Time getEffectiveTime() {
         return effectiveTime;
     }
 
-    public void setEffectiveTime(Calendar effectiveTime) {
+    public void setEffectiveTime(Time effectiveTime) {
         this.effectiveTime = effectiveTime;
     }
 
-    public Calendar getEffectiveStratTime() {
+    public Time getEffectiveStratTime() {
         return effectiveStratTime;
     }
 
-    public void setEffectiveStratTime(Calendar effectiveStratTime) {
+    public void setEffectiveStratTime(Time effectiveStratTime) {
         this.effectiveStratTime = effectiveStratTime;
     }
 
-    public Calendar getEffectiveEndTime() {
+    public Time getEffectiveEndTime() {
         return effectiveEndTime;
     }
 
-    public void setEffectiveEndTime(Calendar effectiveEndTime) {
+    public void setEffectiveEndTime(Time effectiveEndTime) {
         this.effectiveEndTime = effectiveEndTime;
     }
 }

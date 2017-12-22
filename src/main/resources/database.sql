@@ -46,6 +46,20 @@ CREATE TABLE taobao_product(
   manufacturer VARCHAR,
   describe VARCHAR
 );
+/**价格表：
+  id 产品编号
+  value 价格
+  effectiveTime      价格有效时间
+  effectiveStratTime 有效开始时间
+  effectiveEndTime   有效结束时间
+ */
+CREATE TABLE taobao_value(
+  id INT PRIMARY KEY,
+  value DECIMAL,
+  effectiveTime TIME,
+  effectiveStratTime TIME,
+  effectiveEndTime TIME,
+);
 
 
 INSERT INTO tb_taobao_user(username, password) VALUES ('123','456');

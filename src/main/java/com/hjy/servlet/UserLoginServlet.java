@@ -20,6 +20,7 @@ import java.io.IOException;
 @WebServlet(name = "UserLoginServlet", urlPatterns = {"/User/LoginServlet"})
 public class UserLoginServlet extends HttpServlet{
 
+    public static final String ZHANGSHAN = "zhangshan";
     private final UserService userService = new UserServiceImpl();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -51,4 +52,11 @@ public class UserLoginServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req,resp);
     }
+
+    public String getName() {
+        return ZHANGSHAN;
+    }
+
+
+
 }

@@ -38,11 +38,12 @@ public class ProductDaoImpl implements ProductDao {
             rs = psmt.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
-                product.setId(rs.getInt("id"));
+                product.setId(rs.getString("id"));
                 product.setName(rs.getString("name"));
                 product.setManufacturer(rs.getString("manufacturer"));
                 product.setDescribe(rs.getString("describe"));
                 productList.add(product);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

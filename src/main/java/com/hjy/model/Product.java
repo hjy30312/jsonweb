@@ -11,17 +11,17 @@ public class Product {
      manufacturer 生产厂家
      describe 说明
      */
-    private int id;
+    private String id;
     private String name;
     private String manufacturer;
     private String describe;
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

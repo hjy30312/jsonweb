@@ -19,32 +19,24 @@
                     type: "post",
                     dataType: "json",
                     success: function (result) {
-                        /*
-                        for(var i=0; i<result.length;i++) {
-                            var id = result[i].id;
-                            var name = result[i].name;
-                            var manufacturer = result[i].manufacturer;
-                            var describe = result[i].describe;
-                           */
-                            var id = result.id;
-
-                            var name = result.name;
-                            var manufacturer = result.manufacturer;
-                            var value = result.value;
-                            var functions = result.functions;
-                            //拼成li
-                            var s_li = "<tr>"
-                                +   "<td><span class=\"qqq\">"+id+"</span></td>"
-                                +   "<td>" +name+"</td>"
-                                +   "<td>" +manufacturer+"</td>"
-                                +   "<td>" +value+"</td>"
-                                +   "<td>" +functions+"</td>"
-                                +   "</tr>";
-                            var $li = $(s_li); //将字符串转成jquery
-                            alert(s_li);
-                            //将$li添加到ul列表中
-                            $("#product_list").append($li);
-                        }
+                        var id = result.id;
+                        var name = result.name;
+                        var manufacturer = result.manufacturer;
+                        var value = result.value;
+                        var functions = result.functions;
+                        //拼成li
+                        var s_li = "<tr>"
+                            +   "<td><span class=\"qqq\">"+id+"</span></td>"
+                            +   "<td>" +name+"</td>"
+                            +   "<td>" +manufacturer+"</td>"
+                            +   "<td>" +value+"</td>"
+                            +   "<td>" +functions+"</td>"
+                            +   "</tr>";
+                        var $li = $(s_li); //将字符串转成jquery
+                        alert(s_li);
+                        //将$li添加到ul列表中
+                        $("#product_list").append($li);
+                    }
 
 
                 });
@@ -52,6 +44,38 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+            $("#productList").click(function () {
+                //发送ajax
+                $.ajax({
+                    url: "/productList.do",
+                    type: "post",
+                    success: function (result) {
+
+                        for (var i=0;i<result.length;i++) {
+                            var id = result[i].id;
+                            var name = result[i].name;
+                            var manufacturer = result[i].manufacturer;
+                            var value = result[i].value;
+                            var functions = result[i].functions;
+
+                            var s_li = "<tr>"
+                                + "<td><span class=\"qqq\">"+id+"</span></td>"
+                                + "<td>"+name+"</td>"
+                                + "<td>"+manufacturer+"</td>"
+                                + "<td>"+value+"</td>"
+                                + "</tr>";
+                            var $li = $(s_li); //将字符串转成jquery
+                            $("#student_list").append($li);
+                        }
+
+                    }
+
+                })
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="row">

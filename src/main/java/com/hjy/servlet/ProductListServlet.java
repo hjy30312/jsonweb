@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * 得到购物车的列表信息
@@ -13,6 +14,10 @@ import java.io.IOException;
  * @create 2017/12/21
  **/
 public class ProductListServlet extends HttpServlet {
+
+
+
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 

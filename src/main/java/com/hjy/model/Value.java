@@ -10,17 +10,17 @@ import java.util.Calendar;
  * @create 2017/12/21
  **/
 public class Value {
-    private int id;      //产品编号
+    private String id;      //产品编号
     private double value;   //价格
     private Time effectiveTime;     //价格有效时间
     private Time effectiveStratTime;    //有效开始时间
     private Time effectiveEndTime;      //有效结束时间
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

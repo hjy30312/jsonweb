@@ -28,7 +28,7 @@ public class StudentDaoImpl implements StudentDao {
             String sql = "insert into rb_json_student(id,name) VALUES (?,?) ";
 
             psmt = conn.prepareStatement(sql);
-            psmt.setString(1, stu.getId());
+            //psmt.setString(1, stu.getId());
             psmt.setString(2, stu.getName());
             psmt.executeQuery();
 
