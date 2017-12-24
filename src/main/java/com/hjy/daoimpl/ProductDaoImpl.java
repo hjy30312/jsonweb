@@ -43,7 +43,6 @@ public class ProductDaoImpl implements ProductDao {
                 product.setManufacturer(rs.getString("manufacturer"));
                 product.setDescribe(rs.getString("describe"));
                 productList.add(product);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();

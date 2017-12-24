@@ -4,6 +4,20 @@ CREATE TABLE taobao_user(
   password VARCHAR
 );
 
+CREATE TABLE tb_commodity(
+    id INT PRIMARY KEY,
+    name VARCHAR2(20) ,
+    type VARCHAR2(20) ,
+    weight NUMBER (4,2),
+    value NUMBER(4,2)
+);
+
+CREATE TABLE tb_ShoppingCart(
+    id INT PRIMARY KEY ,
+    user_id INT ,
+    commodity_id INT ,
+    value NUMBER (4,2),
+)
 
 /** 订单表：
  id 订单编号
@@ -64,3 +78,6 @@ CREATE TABLE taobao_value(
 
 INSERT INTO tb_taobao_user(username, password) VALUES ('123','456');
 insert into taobao_product (id, name, manufacturer, describe) values ('1','玩具','湖北','这是一个玩具');
+INSERT INTO tb_commodity(id,name,type,weight,value) VALUES ('1','书','文具','1','1');
+INSERT INTO tb_commodity(id,name,type,weight,value) VALUES ('2','笔','文具','1','1');
+INSERT INTO tb_ShoppingCart(id,user_id,commodity_id,value) VALUES ()

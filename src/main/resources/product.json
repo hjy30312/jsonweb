@@ -1,8 +1,7 @@
 
 {
-  "id":"产品编号",
+  "id":"商品编号",
   "name":"名称",
-  "manufacturer": "生产厂家",
   "value": "价格",
   "functions": "功能"
 }

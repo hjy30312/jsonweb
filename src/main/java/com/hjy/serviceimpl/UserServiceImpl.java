@@ -1,6 +1,7 @@
 package com.hjy.serviceimpl;
 
 import com.hjy.dao.UserDao;
+import com.hjy.daoimpl.UserDaoImpl;
 import com.hjy.model.User;
 import com.hjy.service.UserService;
 
@@ -13,8 +14,8 @@ import javax.annotation.Resource;
 public class UserServiceImpl implements UserService {
 
 //    private final UserDao userDao = new UserDaoImpl();
-    @Resource
-    private UserDao userDao;
+
+    private UserDao userDao = new UserDaoImpl();
 
 
     @Override

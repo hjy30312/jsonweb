@@ -28,7 +28,6 @@
                         var s_li = "<tr>"
                             +   "<td><span class=\"qqq\">"+id+"</span></td>"
                             +   "<td>" +name+"</td>"
-                            +   "<td>" +manufacturer+"</td>"
                             +   "<td>" +value+"</td>"
                             +   "<td>" +functions+"</td>"
                             +   "</tr>";
@@ -37,8 +36,6 @@
                         //将$li添加到ul列表中
                         $("#product_list").append($li);
                     }
-
-
                 });
             });
         });
@@ -49,31 +46,41 @@
             $("#productList").click(function () {
                 //发送ajax
                 $.ajax({
-                    url: "/productList.do",
+                    url: "/commodity.do",
                     type: "post",
                     success: function (result) {
-
+                        var json = eval(result);
+                        var con;
+                        $.each(json, function (index, item) {
+                            var id = json[index].id;
+                            var name = json[index].name;
+                            var value = json[index].value;
+                            con += "<tr>"
+                                + "<td><span class=\"qqq\">" + id + "</span></td>"
+                                + "<td>" + name + "</td>"
+                                + "<td>" + value + "</td>"
+                                + "</tr>";
+                        });
+                        $("#commodity").html(con);
+                        /*
                         for (var i=0;i<result.length;i++) {
                             var id = result[i].id;
                             var name = result[i].name;
-                            var manufacturer = result[i].manufacturer;
                             var value = result[i].value;
-                            var functions = result[i].functions;
 
                             var s_li = "<tr>"
                                 + "<td><span class=\"qqq\">"+id+"</span></td>"
                                 + "<td>"+name+"</td>"
-                                + "<td>"+manufacturer+"</td>"
                                 + "<td>"+value+"</td>"
                                 + "</tr>";
                             var $li = $(s_li); //将字符串转成jquery
-                            $("#student_list").append($li);
-                        }
-
+                            $("#commodity").append($li);
+                         }
+                        */
                     }
 
                 })
-            })
+            });
         })
     </script>
 </head>
@@ -95,14 +102,13 @@
     <div class="col-md-5">
         <table class="table table-hover table-bordered">
             <!--动态显示 -->
-            <thead>
+            <thead id="product_list">
             <!--表头-->
-            <tr id="product_list">
 
             </tr>
             </thead>
             <!--内容-->
-            <tbody id="products">
+            <tbody id="commodity">
 
             </tbody>
         </table>

@@ -36,7 +36,7 @@ public class ProductValueDaoImpl implements ProductValueDao {
             conn = DatabaseBean.getConnection();
             String sql = "";
             psmt = conn.prepareStatement(sql);
-            psmt.setString();
+            //psmt.setString();
             psmt.executeQuery();
             while (rs.next()) {
                 Product_Value product_value = new Product_Value();
@@ -50,10 +50,12 @@ public class ProductValueDaoImpl implements ProductValueDao {
                 product_value.setEffectiveEndTime(rs.getTime("effectiveEndTime"));
                 product_valueList.add(product_value);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DatabaseBean.release(rs,psmt,conn);
+            DatabaseBean.release(rs, psmt, conn);
         }
-
+        return product_valueList;
+    }
 }
