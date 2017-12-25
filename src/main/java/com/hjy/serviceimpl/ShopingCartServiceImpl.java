@@ -13,7 +13,6 @@ public class ShopingCartServiceImpl implements ShopingCartService {
     private ShopingCartDao shopingCartDao = new ShopingCartDaoImpl();
 
     @Override
-
     public void insertShopingCart(int user_id, int commodity_id) {
         shopingCartDao.insertShopingCart(user_id,commodity_id);
     }

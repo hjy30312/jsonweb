@@ -14,8 +14,8 @@ CREATE TABLE tb_commodity(
 
 CREATE TABLE tb_ShoppingCart(
     id INT PRIMARY KEY ,
-    user_id INT ,
-    commodity_id INT ,
+    user_id INT FOREIGN KEY ,
+    commodity_id INT FOREIGN KEY ,
     value NUMBER (4,2),
 )
 

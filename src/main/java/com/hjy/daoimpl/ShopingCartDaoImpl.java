@@ -1,12 +1,15 @@
 package com.hjy.daoimpl;
 
 import com.hjy.dao.ShopingCartDao;
+import com.hjy.model.ShopingCart;
 import com.hjy.util.DatabaseBean;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author hjy
@@ -33,6 +36,30 @@ public class ShopingCartDaoImpl implements ShopingCartDao {
         } finally {
             DatabaseBean.release(psmt,conn);
         }
+    }
 
+    @Override
+    public List<ShopingCart> selectAllByUserID(int user_id) {
+        List<ShopingCart> shopingCartList = new ArrayList<ShopingCart>();
+        try {
+            conn = DatabaseBean.getConnection();
+            String sql = "SELECT * FROM tb_ShoppingCart WHERE user_id=?";
+            psmt = conn.prepareStatement(sql);
+            psmt.setInt(1,user_id);
+            rs = psmt.executeQuery();
+            while (rs.next()) {
+                ShopingCart shopingCart = new ShopingCart();
+                shopingCart.setId(rs.getInt(rs.getInt("id")));
+                shopingCart.setCommodity_id(rs.getInt("commodity_id"));
+                shopingCart.setUser_id(rs.getInt("user_id"));
+                shopingCart.setValue(rs.getDouble("value"));
+                shopingCartList.add(shopingCart);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DatabaseBean.release(rs, psmt, conn);
+        }
+        return shopingCartList;
     }
 }

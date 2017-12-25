@@ -33,9 +33,7 @@ public class CommodityDaoImpl implements CommodityDao {
             rs = psmt.executeQuery();
 
             while (rs.next()) {
-
                 Commodity commodity = new Commodity();
-
                 commodity.setId(rs.getInt("id"));
                 commodity.setName(rs.getString("name"));
                 commodity.setType(rs.getString("type"));

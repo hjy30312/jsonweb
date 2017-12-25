@@ -49,12 +49,13 @@
                     url: "/commodity.do",
                     type: "post",
                     success: function (result) {
+
                         var json = eval(result);
                         var con;
                         $.each(json, function (index, item) {
-                            var id = json[index].id;
-                            var name = json[index].name;
-                            var value = json[index].value;
+                            var id = item.id;
+                            var name = item.name;
+                            var value = item.value;
                             con += "<tr>"
                                 + "<td><span class=\"qqq\">" + id + "</span></td>"
                                 + "<td>" + name + "</td>"
