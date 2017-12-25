@@ -25,12 +25,14 @@ public class ShopingCartDaoImpl implements ShopingCartDao {
     PreparedStatement psmt = null;
     ResultSet rs = null;
 
+
     @Override
     public void insertShopingCart(int user_id, int commodity_id) {
         try {
             conn = DatabaseBean.getConnection();
             String sql = "INSERT INTO tb_ShoppingCart(id,user_id,commodity_id,value) VALUES ()";
             psmt = conn.prepareStatement(sql);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -61,5 +63,20 @@ public class ShopingCartDaoImpl implements ShopingCartDao {
             DatabaseBean.release(rs, psmt, conn);
         }
         return shopingCartList;
+    }
+
+    @Override
+    public void deleteOneShoppingCartByid(int id) {
+        try {
+            conn = DatabaseBean.getConnection();
+            String sql = "DELETE FROM tb_ShoppingCart WHERE id=?";
+            psmt = conn.prepareStatement(sql);
+            psmt.setInt(1,id);
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DatabaseBean.release(psmt,conn);
+        }
     }
 }

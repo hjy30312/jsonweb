@@ -22,4 +22,10 @@ public interface ShopingCartDao {
      * @return
      */
     public List<ShopingCart> selectAllByUserID(int user_id);
+
+    /**
+     * 通过购物车id删除掉改购物车
+     * @param id
+     */
+    public void deleteOneShoppingCartByid(int id);
 }
