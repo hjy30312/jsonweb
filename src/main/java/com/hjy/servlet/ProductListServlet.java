@@ -15,10 +15,6 @@ import java.util.regex.PatternSyntaxException;
  **/
 public class ProductListServlet extends HttpServlet {
 
-
-
-
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 

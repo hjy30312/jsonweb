@@ -4,7 +4,7 @@ package com.hjy.model;
  * @author hjy
  * @create 2017/12/24
  **/
-public class ShopingCart {
+public class ShoppingCart {
     private int id;
     private int user_id;
     private int commodity_id;

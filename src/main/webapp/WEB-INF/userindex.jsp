@@ -51,18 +51,46 @@
                     success: function (result) {
 
                         var json = eval(result);
-                        var con;
-                        $.each(json, function (index, item) {
-                            var id = item.id;
-                            var name = item.name;
-                            var value = item.value;
-                            con += "<tr>"
+
+//                        var con;
+//                            $.each(json, function (index, item) {
+//                                var id = item.id;
+//                                var name = item.name;
+//                                var value = item.value;
+
+                            /*con =+ "<tr>"
                                 + "<td><span class=\"qqq\">" + id + "</span></td>"
-                                + "<td>" + name + "</td>"
-                                + "<td>" + value + "</td>"
-                                + "</tr>";
-                        });
-                        $("#commodity").html(con);
+                        + "<td>" + name + "</td>"
+                        + "<td>" + value + "</td>"
+                        + "<td>"
+                        +    "<button class=\"btn btn-default\" href='/User/InsertShoppingCartServlet?id= '+id+'>" + "添加</button>"
+                        + "</td>"
+
+                        + "</tr>";*/
+//                           });
+                        var format = function (str, data) {
+                            var html = '';
+                            if (data instanceof Array) {
+                                for (var i = 0, len = data.length; i < len; i++) {
+                                    html += arguments.callee(str, data[i]);
+                                }
+                                return html;
+                            } else {
+                                return str.replace(/{#(\w+)#}/g, function (match, key) {
+                                    return typeof data === 'string' ? data : (typeof data[key] === 'undefined' ? '' : data[key]);
+                                });
+                            }
+                        };
+                        var html = "<tr>"
+                            + "<td><span class='qqq'>{#id#}</span></td>"
+                            + "<td>{#name#}</td>"
+                            + "<td>{#value#}</td>"
+                            + "<td>"
+                            + "<button class='btn btn-default' href='/User/InsertShoppingCartServlet?id={#id#}'>添加</button>"
+                            + "</td>"
+                            + "</tr>";
+                        var element = format(html, json);
+                        $("#commodity").append(element);
                         /*
                         for (var i=0;i<result.length;i++) {
                             var id = result[i].id;
@@ -102,16 +130,19 @@
     <!--左边为商品信息-->
     <div class="col-md-5">
         <table class="table table-hover table-bordered">
+
             <!--动态显示 -->
             <thead id="product_list">
             <!--表头-->
 
             </tr>
             </thead>
+
             <!--内容-->
             <tbody id="commodity">
 
             </tbody>
+
         </table>
     </div>
 

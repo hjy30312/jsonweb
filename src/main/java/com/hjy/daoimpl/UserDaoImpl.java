@@ -19,21 +19,19 @@ public class UserDaoImpl implements UserDao {
     PreparedStatement psmt = null;
     ResultSet rs = null;
 
-
-
-
     @Override
     public User selectOneByUsernamePassword(String username, String password) {
         User user = null;
         try {
             conn = DatabaseBean.getConnection();
-            String sql = "select * from tb_taobao_user where username=? and password=?";
+            String sql = "select * from tb_user where username=? and password=?";
             psmt = conn.prepareStatement(sql);
             psmt.setString(1,username);
             psmt.setString(2,password);
             rs = psmt.executeQuery();
             if (rs.next()) {
                 user = new User();
+                user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
             }

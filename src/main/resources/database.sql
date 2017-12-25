@@ -1,7 +1,8 @@
-
-CREATE TABLE taobao_user(
-  username VARCHAR PRIMARY  KEY,
-  password VARCHAR
+DROP TABLE tb_user
+CREATE TABLE tb_user(
+  id INT  PRIMARY KEY ,
+  username VARCHAR(20) ,
+  password VARCHAR(20)
 );
 
 CREATE TABLE tb_commodity(
@@ -14,10 +15,10 @@ CREATE TABLE tb_commodity(
 
 CREATE TABLE tb_ShoppingCart(
     id INT PRIMARY KEY ,
-    user_id INT FOREIGN KEY ,
-    commodity_id INT FOREIGN KEY ,
+    user_id INT ,
+    commodity_id INT ,
     value NUMBER (4,2),
-)
+);
 
 /** 订单表：
  id 订单编号
@@ -75,8 +76,7 @@ CREATE TABLE taobao_value(
   effectiveEndTime TIME,
 );
 
-
-INSERT INTO tb_taobao_user(username, password) VALUES ('123','456');
+INSERT INTO tb_user(id,username, password) VALUES ('1','123','456');
 insert into taobao_product (id, name, manufacturer, describe) values ('1','玩具','湖北','这是一个玩具');
 INSERT INTO tb_commodity(id,name,type,weight,value) VALUES ('1','书','文具','1','1');
 INSERT INTO tb_commodity(id,name,type,weight,value) VALUES ('2','笔','文具','1','1');

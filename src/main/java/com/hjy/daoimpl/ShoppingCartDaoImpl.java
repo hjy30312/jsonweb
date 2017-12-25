@@ -1,7 +1,7 @@
 package com.hjy.daoimpl;
 
-import com.hjy.dao.ShopingCartDao;
-import com.hjy.model.ShopingCart;
+import com.hjy.dao.ShoppingCartDao;
+import com.hjy.model.ShoppingCart;
 import com.hjy.util.DatabaseBean;
 
 import java.sql.Connection;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author hjy
  * @create 2017/12/24
  **/
-public class ShopingCartDaoImpl implements ShopingCartDao {
+public class ShoppingCartDaoImpl implements ShoppingCartDao {
     /**
      * 数据库的链接对象 conn
      * 预编译sql语句对象 psmt
@@ -41,8 +41,8 @@ public class ShopingCartDaoImpl implements ShopingCartDao {
     }
 
     @Override
-    public List<ShopingCart> selectAllByUserID(int user_id) {
-        List<ShopingCart> shopingCartList = new ArrayList<ShopingCart>();
+    public List<ShoppingCart> selectAllByUserID(int user_id) {
+        List<ShoppingCart> shoppingCartList = new ArrayList<ShoppingCart>();
         try {
             conn = DatabaseBean.getConnection();
             String sql = "SELECT * FROM tb_ShoppingCart WHERE user_id=?";
@@ -50,19 +50,19 @@ public class ShopingCartDaoImpl implements ShopingCartDao {
             psmt.setInt(1,user_id);
             rs = psmt.executeQuery();
             while (rs.next()) {
-                ShopingCart shopingCart = new ShopingCart();
-                shopingCart.setId(rs.getInt(rs.getInt("id")));
-                shopingCart.setCommodity_id(rs.getInt("commodity_id"));
-                shopingCart.setUser_id(rs.getInt("user_id"));
-                shopingCart.setValue(rs.getDouble("value"));
-                shopingCartList.add(shopingCart);
+                ShoppingCart shoppingCart = new ShoppingCart();
+                shoppingCart.setId(rs.getInt(rs.getInt("id")));
+                shoppingCart.setCommodity_id(rs.getInt("commodity_id"));
+                shoppingCart.setUser_id(rs.getInt("user_id"));
+                shoppingCart.setValue(rs.getDouble("value"));
+                shoppingCartList.add(shoppingCart);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DatabaseBean.release(rs, psmt, conn);
         }
-        return shopingCartList;
+        return shoppingCartList;
     }
 
     @Override
