@@ -14,7 +14,7 @@ public interface ShoppingCartDao {
      * @param user_id
      * @param commodity_id
      */
-    public void insertShopingCart(int user_id,int commodity_id);
+    public void insertShoppingCart(int user_id,int commodity_id);
 
     /**
      * 通过用户id找到属于他的购物车

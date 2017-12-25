@@ -18,7 +18,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void insertShoppingCart(int user_id, int commodity_id) {
-        shoppingCartDao.insertShopingCart(user_id,commodity_id);
+        shoppingCartDao.insertShoppingCart(user_id,commodity_id);
     }
 
     @Override

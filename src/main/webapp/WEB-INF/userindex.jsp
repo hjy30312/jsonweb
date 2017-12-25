@@ -10,31 +10,53 @@
        });
    </script>
 
+    <script>
+        function InsetShoppingCart(id) {
+            $.ajax({
+                url:"/User/InsertShoppingCartServlet?id=" + id,
+                type: "post",
+                success:function () {
+                    alert("添加成功！");
+                },
+                error:function () {
+                    alert("添加失败！");
+                }
+            });
+        }
+    </script>
+
     <script type="text/javascript">
         $(function () {
             $("#productList").click(function () {
-                alert("123");
                 $.ajax({
                     url: "/productList.do",
                     type: "post",
                     dataType: "json",
                     success: function (result) {
-                        var id = result.id;
-                        var name = result.name;
-                        var manufacturer = result.manufacturer;
-                        var value = result.value;
-                        var functions = result.functions;
-                        //拼成li
-                        var s_li = "<tr>"
-                            +   "<td><span class=\"qqq\">"+id+"</span></td>"
-                            +   "<td>" +name+"</td>"
-                            +   "<td>" +value+"</td>"
-                            +   "<td>" +functions+"</td>"
+                        var json = eval(result);
+
+                        var format = function (str, data) {
+                            var html = '';
+                            if (data instanceof Array) {
+                                for (var i = 0, len = data.length; i < len; i++) {
+                                    html += arguments.callee(str, data[i]);
+                                }
+                                return html;
+                            } else {
+                                return str.replace(/{#(\w+)#}/g, function (match, key) {
+                                    return typeof data === 'string' ? data : (typeof data[key] === 'undefined' ? '' : data[key]);
+                                });
+                            }
+                        };
+                        
+                        var html = "<tr>"
+                            +   "<td><span class=\"qqq\">{#id#}</span></td>"
+                            +   "<td>{#name#}</td>"
+                            +   "<td>{#value#}</td>"
+                            +   "<td>{#function#}</td>"
                             +   "</tr>";
-                        var $li = $(s_li); //将字符串转成jquery
-                        alert(s_li);
-                        //将$li添加到ul列表中
-                        $("#product_list").append($li);
+                        var element = format(html, json);
+                        $("#product_list").append(element);
                     }
                 });
             });
@@ -49,25 +71,10 @@
                     url: "/commodity.do",
                     type: "post",
                     success: function (result) {
-
                         var json = eval(result);
-
-//                        var con;
-//                            $.each(json, function (index, item) {
-//                                var id = item.id;
-//                                var name = item.name;
-//                                var value = item.value;
-
-                            /*con =+ "<tr>"
-                                + "<td><span class=\"qqq\">" + id + "</span></td>"
-                        + "<td>" + name + "</td>"
-                        + "<td>" + value + "</td>"
-                        + "<td>"
-                        +    "<button class=\"btn btn-default\" href='/User/InsertShoppingCartServlet?id= '+id+'>" + "添加</button>"
-                        + "</td>"
-
-                        + "</tr>";*/
-//                           });
+                        /**
+                         * 拼接字符串模板
+                         */
                         var format = function (str, data) {
                             var html = '';
                             if (data instanceof Array) {
@@ -86,32 +93,64 @@
                             + "<td>{#name#}</td>"
                             + "<td>{#value#}</td>"
                             + "<td>"
-                            + "<button class='btn btn-default' href='/User/InsertShoppingCartServlet?id={#id#}'>添加</button>"
+                            + "<button class='btn btn-default' type='button' onclick='InsetShoppingCart({#id#})' >添加</button>"
                             + "</td>"
                             + "</tr>";
                         var element = format(html, json);
                         $("#commodity").append(element);
-                        /*
-                        for (var i=0;i<result.length;i++) {
-                            var id = result[i].id;
-                            var name = result[i].name;
-                            var value = result[i].value;
-
-                            var s_li = "<tr>"
-                                + "<td><span class=\"qqq\">"+id+"</span></td>"
-                                + "<td>"+name+"</td>"
-                                + "<td>"+value+"</td>"
-                                + "</tr>";
-                            var $li = $(s_li); //将字符串转成jquery
-                            $("#commodity").append($li);
-                         }
-                        */
                     }
-
                 })
             });
         })
     </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#ShoppingCart").click(function () {
+                //发送ajax
+                $.ajax({
+                    url: "/ShoppingCartHead",
+                    type: "post",
+                    success: function (result) {
+                        var json = eval(result);
+                        /**
+                         * 拼接字符串模板
+                         */
+                        var format = function (str, data) {
+                            var html = '';
+                            if (data instanceof Array) {
+                                for (var i = 0, len = data.length; i < len; i++) {
+                                    html += arguments.callee(str, data[i]);
+                                }
+                                return html;
+                            } else {
+                                return str.replace(/{#(\w+)#}/g, function (match, key) {
+                                    return typeof data === 'string' ? data : (typeof data[key] === 'undefined' ? '' : data[key]);
+                                });
+                            }
+                        };
+                        var html = "<tr>"
+                            + "<td><span class='qqq'>{#id#}</span></td>"
+                            + "<td>{#user_id#}</td>"
+                            + "<td>{#commodity_id#}</td>"
+                            + "<td>{#values#}</td>"
+                            + "<td>"
+                            + "<button class='btn btn-default' type='button' onclick='InsetShoppingCart({#id#})' >添加</button>"
+                            + "</td>"
+                            + "</tr>";
+                        var element = format(html, json);
+                        $("#commodity").append(element);
+                    }
+                })
+            });
+        })
+    </script>
+
+
+
+
+
+
 </head>
 <body>
 <div class="row">
