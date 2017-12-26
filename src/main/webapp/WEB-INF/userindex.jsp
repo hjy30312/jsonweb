@@ -27,7 +27,7 @@
 
 
     </script>
-
+    <!--添加购物车-->
     <script>
         function InsetShoppingCart(id) {
             $.ajax({
@@ -42,6 +42,49 @@
             });
         }
     </script>
+    <!--修改密码-->
+    <script>
+        function UpdatePassword(id) {
+            var oldPassword = $("#oldPassword")[0].value;
+            var newPassword = $("#newPassword1")[0].value;
+            var renewPassword = $("#newPassword2")[0].value;
+            $("#oldPassword")[0]="";
+            $("#newPassword1")[0]="";
+            $("#newPassword2")[0]="";
+            if(!(newPassword === renewPassword)) {
+                alert("前后密码不一致！");
+            } else {
+                $.ajax({
+                    url:"/User/UserUpdateServlet?newPassword=" + newPassword +"&oldPassword=" + oldPassword,
+                    type: "post",
+                    success:function () {
+                        alert("修改成功！");
+                    },
+                    error:function () {
+                        alert("修改失败！");
+                    }
+                });
+            }
+        }
+    </script>
+    <!--付款-->
+    <script>
+        function Payment() {
+            var commodity_id = $("#commodity_id")[0].value;
+            var value = $("#value")[0].value;
+            $.ajax({
+                url:"/User/PaymentServlet?commodity_id=" + commodity_id +"&value=" + value,
+                type: "post",
+                success:function () {
+                    alert("付款成功！");
+                },
+                error:function () {
+                    alert("付款失败！");
+                }
+            });
+
+        }
+    </script>
     <!--拼接商品列表头部-->
     <script type="text/javascript">
         $(function () {
@@ -53,20 +96,6 @@
                     success: function (result) {
                         $("#head").empty();
                         var json = eval(result);
-
-//                        var format = function (str, data) {
-//                            var html = '';
-//                            if (data instanceof Array) {
-//                                for (var i = 0, len = data.length; i < len; i++) {
-//                                    html += arguments.callee(str, data[i]);
-//                                }
-//                                return html;
-//                            } else {
-//                                return str.replace(/{#(\w+)#}/g, function (match, key) {
-//                                    return typeof data === 'string' ? data : (typeof data[key] === 'undefined' ? '' : data[key]);
-//                                });
-//                            }
-//                        };
                         
                         var html = "<tr>"
                             +   "<td><span class=\"qqq\">{#id#}</span></td>"
@@ -95,22 +124,7 @@
                     success: function (result) {
                         var json = eval(result);
                         $("#content").empty();
-                        /**
-                         * 拼接字符串模板
-                         */
-                        var format = function (str, data) {
-                            var html = '';
-                            if (data instanceof Array) {
-                                for (var i = 0, len = data.length; i < len; i++) {
-                                    html += arguments.callee(str, data[i]);
-                                }
-                                return html;
-                            } else {
-                                return str.replace(/{#(\w+)#}/g, function (match, key) {
-                                    return typeof data === 'string' ? data : (typeof data[key] === 'undefined' ? '' : data[key]);
-                                });
-                            }
-                        };
+
                         var html = "<tr>"
                             + "<td><span class='qqq'>{#id#}</span></td>"
                             + "<td>{#name#}</td>"
@@ -118,7 +132,7 @@
                             + "<td>{#manufacturer#}</td>"
                             + "<td>{#describe#}</td>"
                             + "<td>"
-                            + "<button class='btn btn-default' type='button' onclick='InsetShoppingCart({#id#})' >添加购物车</button>"
+                            + "<button class='btn btn-default' type='button' onclick='InsetShoppingCart({#id#})' >加入购物车</button>"
                             + "</td>"
                             + "</tr>";
                         var element = format(html, json);
@@ -140,22 +154,7 @@
                     success: function (result) {
                         var json = eval(result);
                         $("#head").empty();
-                        /**
-                         * 拼接字符串模板
-                         */
-                        var format = function (str, data) {
-                            var html = '';
-                            if (data instanceof Array) {
-                                for (var i = 0, len = data.length; i < len; i++) {
-                                    html += arguments.callee(str, data[i]);
-                                }
-                                return html;
-                            } else {
-                                return str.replace(/{#(\w+)#}/g, function (match, key) {
-                                    return typeof data === 'string' ? data : (typeof data[key] === 'undefined' ? '' : data[key]);
-                                });
-                            }
-                        };
+
                         var html = "<tr>"
                             + "<td><span class='qqq'>{#id#}</span></td>"
                             + "<td>{#user_id#}</td>"
@@ -182,29 +181,13 @@
                     success: function (result) {
                         var json = eval(result);
                         $("#content").empty();
-                        /**
-                         * 拼接字符串模板
-                         */
-                        var format = function (str, data) {
-                            var html = '';
-                            if (data instanceof Array) {
-                                for (var i = 0, len = data.length; i < len; i++) {
-                                    html += arguments.callee(str, data[i]);
-                                }
-                                return html;
-                            } else {
-                                return str.replace(/{#(\w+)#}/g, function (match, key) {
-                                    return typeof data === 'string' ? data : (typeof data[key] === 'undefined' ? '' : data[key]);
-                                });
-                            }
-                        };
+
                         var html = "<tr>"
                             + "<td><span class='qqq'>{#id#}</span></td>"
-                            + "<td>{#user_id#}</td>"
-                            + "<td>{#commodity_id#}</td>"
-                            + "<td>{#value#}</td>"
+                            + "<td id='commodity_id'>{#commodity_id#}</td>"
+                            + "<td id='value'>{#value#}</td>"
                             + "<td>"
-                            + "<button class='btn btn-default' type='button' onclick='InsetShoppingCart({#id#})' >付款</button>"
+                            + "<button class='btn btn-default' type='button' onclick='Payment()' >付款</button>"
                             + "</td>"
                             + "</tr>";
                         var element = format(html, json);
@@ -214,8 +197,51 @@
             });
         })
     </script>
-    <!--拼接个人信息内容-->
+    <!--拼接修改密码头部-->
+    <script type="text/javascript">
+        $(function () {
+            $("#UpdatePassword").click(function () {
+                //发送ajax
+                $.ajax({
+                    url: "/User/UpdatePasswordHeadServlet",
+                    type: "post",
+                    dataType: "json",
+                    success: function (result) {
+                        var json = eval(result);
+                        $("#head").empty();
 
+                        var html = "<tr>"
+                            + "<td><span class='qqq'>{#oldPassword#}</span></td>"
+                            + "<td>{#newPassword1#}</td>"
+                            + "<td>{#newPassword2#}</td>"
+                            + "<td></td>"
+                            + "</tr>";
+                        var element = format(html, json);
+                        $("#head").append(element);
+                    }
+                })
+            });
+        })
+    </script>
+    <!--拼接修改密码内容-->
+    <script type="text/javascript">
+        $(function () {
+            $("#UpdatePassword").click(function () {
+                $("#content").empty();
+                var html = "<tr>"
+                    + "<td><input type=\"text\" class=\"input\" id=\"oldPassword\" name=\"oldPassword\"  /></td>"
+                    + "<td><input type=\"text\" class=\"input\" id=\"newPassword1\" name=\"newPassword1\"  /></td>"
+                    + "<td>"
+                    +  "<input type=\"text\" class=\"input\" id=\"newPassword2\" name=\"newPassword2\"  />"
+                    + "</td>"
+                    + "<td>"
+                    + "<button class='btn btn-default' type='button' onclick='UpdatePassword()' >确定</button>"
+                    + "</td>"
+                    + "</tr>";
+                $("#content").append(html);
+            });
+        })
+    </script>
 </head>
 <body>
 <div class="row">
@@ -228,7 +254,7 @@
             <br>
             <button type="button" id="OrderInformation" class="btn btn-default">订单信息</button>
             <br>
-            <button type="button" id="n" class="btn btn-default">个人信息</button>
+            <button type="button" id="UpdatePassword" class="btn btn-default">修改密码</button>
         </div>
     </div>
     <!--左边为商品信息-->

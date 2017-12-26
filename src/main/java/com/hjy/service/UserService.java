@@ -8,5 +8,5 @@ import com.hjy.model.User;
  **/
 public interface UserService {
     public User findUserByUsernamePassword(String username, String Password);
-    public void updatePassword(int user_id, String password);
+    public void updatePassword(int user_id, String oldPassword, String password);
 }

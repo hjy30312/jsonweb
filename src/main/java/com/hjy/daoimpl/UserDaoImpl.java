@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updatePassword(int id,String password) {
+    public void updatePassword(int id, String oldPassword,String password) {
         try {
             conn = DatabaseBean.getConnection();
             String sql = "UPDATE tb_user SET password=? where id=?";

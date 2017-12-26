@@ -15,5 +15,5 @@ public interface UserDao {
      */
     public User selectOneByUsernamePassword(String username, String password);
 
-    public void updatePassword(int id, String password);
+    public void updatePassword(int id, String oldPassword,String password);
 }

@@ -1,10 +1,6 @@
-package com.hjy.servlet.user;
+package com.hjy.servlet.ShoppingCart;
 
 import com.hjy.model.User;
-import com.hjy.service.ShoppingCartService;
-import com.hjy.service.UserService;
-import com.hjy.serviceimpl.ShoppingCartServiceImpl;
-import com.hjy.serviceimpl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,23 +11,19 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * @author hjy
- * @create 2017/12/26
- **/
-
-@WebServlet(name = "UserUpdateServlet", urlPatterns = {"/User/UserUpdateServlet"})
-public class UserUpdateServlet extends HttpServlet {
-
-
-    private UserService userService = new UserServiceImpl();
+ * @author: hjy
+ * @description:
+ */
+@WebServlet(name = "PaymentServlet", urlPatterns = "/User/PaymentServlet")
+public class PaymentServlet extends HttpServlet{
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String oldPassword = request.getParameter("oldPassword");
-        String newPassword = request.getParameter("newPassword");
+
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         int user_id = user.getId();
-        userService.updatePassword(user_id,oldPassword,newPassword);
+        String commodity_id = request.getParameter("id");
+        shoppingCartService.insertShoppingCart(user_id,Integer.parseInt(commodity_id));
     }
 
     @Override
@@ -43,9 +35,4 @@ public class UserUpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
     }
-
-
-
-
-
 }
