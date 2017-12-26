@@ -1,4 +1,4 @@
-package com.hjy.servlet;
+package com.hjy.servlet.ShoppingCart;
 
 
 import com.hjy.model.User;

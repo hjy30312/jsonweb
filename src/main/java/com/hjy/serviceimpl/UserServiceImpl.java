@@ -13,8 +13,6 @@ import javax.annotation.Resource;
  **/
 public class UserServiceImpl implements UserService {
 
-//    private final UserDao userDao = new UserDaoImpl();
-
     private UserDao userDao = new UserDaoImpl();
 
 
@@ -23,5 +21,10 @@ public class UserServiceImpl implements UserService {
         User user = null;
         user = userDao.selectOneByUsernamePassword(username,password);
         return user;
+    }
+
+    @Override
+    public void updatePassword(int user_id, String password) {
+        userDao.updatePassword(user_id,password);
     }
 }

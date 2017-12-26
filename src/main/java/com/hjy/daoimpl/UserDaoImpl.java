@@ -37,8 +37,26 @@ public class UserDaoImpl implements UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DatabaseBean.release(rs,psmt,conn);
         }
         return user;
+    }
+
+    @Override
+    public void updatePassword(int id,String password) {
+        try {
+            conn = DatabaseBean.getConnection();
+            String sql = "UPDATE tb_user SET password=? where id=?";
+            psmt = conn.prepareStatement(sql);
+            psmt.setString(1,password);
+            psmt.setInt(2,id);
+            psmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DatabaseBean.release(psmt,conn);
+        }
     }
 
     /**

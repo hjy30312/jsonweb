@@ -1,4 +1,4 @@
-package com.hjy.servlet;
+package com.hjy.servlet.Commodity;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -22,7 +22,7 @@ import java.util.List;
  * @create 2017/12/24
  **/
 
-@WebServlet(name = "CommodityServlet", urlPatterns = "/commodity.do")
+@WebServlet(name = "CommodityServlet", urlPatterns = "/commodityList")
 public class CommodityServlet extends HttpServlet{
 
 

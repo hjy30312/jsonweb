@@ -36,9 +36,9 @@ public class CommodityDaoImpl implements CommodityDao {
                 Commodity commodity = new Commodity();
                 commodity.setId(rs.getInt("id"));
                 commodity.setName(rs.getString("name"));
-                commodity.setType(rs.getString("type"));
-                commodity.setWeight(rs.getDouble("weight"));
                 commodity.setValue(rs.getDouble("value"));
+                commodity.setManufacturer(rs.getString("manufacturer"));
+                commodity.setDescribe(rs.getString("describe"));
                 commoditiesList.add(commodity);
             }
         } catch (SQLException e) {

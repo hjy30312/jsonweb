@@ -14,4 +14,6 @@ public interface UserDao {
      * @return
      */
     public User selectOneByUsernamePassword(String username, String password);
+
+    public void updatePassword(int id, String password);
 }

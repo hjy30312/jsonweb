@@ -17,6 +17,18 @@
     <url-pattern>/User/Index</url-pattern>
   </servlet-mapping>
 
+
+
+  <servlet>
+    <servlet-name>UserLogin</servlet-name>
+    <jsp-file>/WEB-INF/login.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserLogin</servlet-name>
+    <url-pattern>/User/Login</url-pattern>
+  </servlet-mapping>
+
+
   <!--<servlet>
     <servlet-name>login</servlet-name>
     <servlet-class>

@@ -1,4 +1,4 @@
-package com.hjy.servlet;
+package com.hjy.servlet.user;
 
 import com.hjy.model.Student;
 import com.hjy.model.User;
@@ -20,7 +20,6 @@ import java.io.IOException;
 @WebServlet(name = "UserLoginServlet", urlPatterns = {"/User/LoginServlet"})
 public class UserLoginServlet extends HttpServlet{
 
-    public static final String ZHANGSHAN = "zhangshan";
     private final UserService userService = new UserServiceImpl();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -53,9 +52,6 @@ public class UserLoginServlet extends HttpServlet{
         processRequest(req,resp);
     }
 
-    public String getName() {
-        return ZHANGSHAN;
-    }
 
 
 

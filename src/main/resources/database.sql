@@ -4,12 +4,13 @@ CREATE TABLE tb_user(
   username VARCHAR(20) ,
   password VARCHAR(20)
 );
-
+DROP TABLE tb_commodity
 CREATE TABLE tb_commodity(
     id INT PRIMARY KEY,
     name VARCHAR2(20) ,
     type VARCHAR2(20) ,
-    weight NUMBER (4,2),
+    manufacturer VARCHAR2(20),
+    describe VARCHAR2(20),
     value NUMBER(4,2)
 );
 
@@ -78,6 +79,6 @@ CREATE TABLE taobao_value(
 
 INSERT INTO tb_user(id,username, password) VALUES ('1','123','456');
 insert into taobao_product (id, name, manufacturer, describe) values ('1','玩具','湖北','这是一个玩具');
-INSERT INTO tb_commodity(id,name,type,weight,value) VALUES ('1','书','文具','1','1');
-INSERT INTO tb_commodity(id,name,type,weight,value) VALUES ('2','笔','文具','1','1');
+INSERT INTO tb_commodity(id,name,type,manufacturer,describe,value) VALUES ('1','书','文具','汽院','','1');
+INSERT INTO tb_commodity(id,name,type,manufacturer,describe,value) VALUES ('2','笔','文具','汽院','','1');
 INSERT INTO tb_ShoppingCart(id,user_id,commodity_id,value) VALUES ()

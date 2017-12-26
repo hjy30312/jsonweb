@@ -15,11 +15,8 @@ public class Commodity implements Serializable{
      * 名称
      */
     private String name;
-    /**
-     * 类型
-     */
-    private String type;
-    private double weight;
+    private String manufacturer;
+    private String describe;
     private double value;
 
     public int getId() {
@@ -38,20 +35,21 @@ public class Commodity implements Serializable{
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
-    public double getWeight() {
-        return weight;
+    public String getDescribe() {
+        return describe;
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setDescribe(String describe) {
+        this.describe = describe;
     }
 
     public double getValue() {
@@ -61,5 +59,4 @@ public class Commodity implements Serializable{
     public void setValue(double value) {
         this.value = value;
     }
-
 }

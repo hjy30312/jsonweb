@@ -1,11 +1,10 @@
-package com.hjy.servlet;
+package com.hjy.servlet.user;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.hjy.model.ShoppingCart;
 import com.hjy.model.User;
 import com.hjy.service.ShoppingCartService;
+import com.hjy.service.UserService;
 import com.hjy.serviceimpl.ShoppingCartServiceImpl;
+import com.hjy.serviceimpl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,25 +12,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author hjy
- * @create 2017/12/25
+ * @create 2017/12/26
  **/
-public class SelectAllByUserIdServlet extends HttpServlet {
+public class UserUpdateServlet extends HttpServlet {
 
-    private ShoppingCartService shoppingCartService = new ShoppingCartServiceImpl();
+
+    private UserService userService = new UserServiceImpl();
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String password = request.getParameter("password");
+
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         int user_id = user.getId();
-        List<ShoppingCart> shoppingCartList = null;
-        shoppingCartList = shoppingCartService.selectAllByUserID(user_id);
-        String jsonObject = JSON.toJSONString(shoppingCartList);
-        JSONArray jsonArray = (JSONArray) JSONArray.parse(jsonObject);
-        response.getWriter().write(jsonArray.toString());
+        userService.updatePassword(user_id,password);
     }
 
     @Override
@@ -43,4 +41,9 @@ public class SelectAllByUserIdServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
     }
+
+
+
+
+
 }

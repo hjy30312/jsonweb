@@ -55,7 +55,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             rs = psmt.executeQuery();
             while (rs.next()) {
                 ShoppingCart shoppingCart = new ShoppingCart();
-                shoppingCart.setId(rs.getInt(rs.getInt("id")));
+                shoppingCart.setId(rs.getInt("id"));
                 shoppingCart.setCommodity_id(rs.getInt("commodity_id"));
                 shoppingCart.setUser_id(rs.getInt("user_id"));
                 shoppingCart.setValue(rs.getDouble("value"));

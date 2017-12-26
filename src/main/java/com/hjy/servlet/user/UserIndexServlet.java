@@ -1,4 +1,4 @@
-package com.hjy.servlet;
+package com.hjy.servlet.user;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
