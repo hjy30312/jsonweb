@@ -2,6 +2,7 @@ package com.hjy.dao;
 
 import com.hjy.model.Order;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -10,5 +11,5 @@ import java.util.List;
  **/
 public interface OrderDao {
     public List<Order> selectAllById(int userId);
-    public void insertOrder(int user_id,double value);
+    public void insertOrder(int userId, double value);
 }

@@ -1,4 +1,4 @@
-package com.hjy.servlet.user;
+package com.hjy.servlet.order;
 
 import com.hjy.util.JsonHeadUtil;
 
@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author hjy
- * @create 2017/12/26
- **/
-@WebServlet(name = "UpdatePasswordHeadServlet", urlPatterns = "/User/UpdatePasswordHeadServlet")
-public class UpdatePasswordHeadServlet extends HttpServlet {
+ * @author : hjy
+ * @description:加载订单头部
+ */
 
+@WebServlet(name = "OrderHeadServlet", urlPatterns = "/User/orderHead")
+public class OrderHeadServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        JsonHeadUtil.processRequest(response,"/updatePassword.json");
+        JsonHeadUtil.processRequest(response,"/order.json");
     }
 
     @Override
@@ -28,5 +28,4 @@ public class UpdatePasswordHeadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
     }
-
 }

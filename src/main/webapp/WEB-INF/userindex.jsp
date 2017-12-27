@@ -127,13 +127,15 @@
             })
         }
     </script>
+    <!---->
+
 
     <!--拼接商品列表头部-->
     <script type="text/javascript">
         $(function () {
             $("#CommodityList").click(function () {
                 $.ajax({
-                    url: "/CommodityHead",
+                    url: "/commodityHead",
                     type: "post",
                     dataType: "json",
                     success: function (result) {
@@ -269,10 +271,10 @@
     <!--拼接订单信息头部-->
     <script type="text/javascript">
         $(function () {
-            $("#UpdatePassword").click(function () {
+            $("#OrderInformation").click(function () {
                 //发送ajax
                 $.ajax({
-                    url: "/User/UpdatePasswordHeadServlet",
+                    url: "/User/orderHead",
                     type: "post",
                     dataType: "json",
                     success: function (result) {
@@ -282,12 +284,41 @@
 
                         var html = "<tr>"
                             + "<td><span class='qqq'>{#id#}</span></td>"
-                            + "<td>{#product_id#}</td>"
                             + "<td>{#time#}</td>"
                             + "<td>{#value#}</td>"
+                            + "<td>{#function#}</td>"
                             + "</tr>";
                         var element = format(html, json);
                         $("#lefthead").append(element);
+                    }
+                })
+            });
+        })
+    </script>
+    <!--拼接订单信息内容-->
+    <script type="text/javascript">
+        $(function () {
+            $("#OrderInformation").click(function () {
+                //发送ajax
+                $.ajax({
+                    url: "/User/OrderList",
+                    type: "post",
+                    dataType: "json",
+                    success: function (result) {
+                        var json = eval(result);
+                        $("#leftcontent").empty();
+                        $("#rightcontent").empty();
+
+                        var html = "<tr>"
+                            + "<td><span class='qqq'>{#id#}</span></td>"
+                            + "<td>{#time#}</td>"
+                            + "<td>{#value#}</td>"
+                            + "<td>"
+                            + "<button class='btn btn-default' type='button' onclick='' >详细</button>"
+                            + "</td>"
+                            + "</tr>";
+                        var element = format(html, json);
+                        $("#leftcontent").append(element);
                     }
                 })
             });
@@ -326,7 +357,7 @@
             <thead id="lefthead">
             <!--表头-->
 
-            </tr>
+
             </thead>
 
             <!--内容-->

@@ -1,6 +1,6 @@
 package com.hjy.model;
 
-import java.sql.Timestamp;
+
 
 /**
  * @author hjy
@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 public class Order {
     private int id;
     private int user_id;
-    private Timestamp time;
+    private String time;
     private double value;
 
     public int getId() {
@@ -28,11 +28,11 @@ public class Order {
         this.user_id = user_id;
     }
 
-    public Timestamp getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

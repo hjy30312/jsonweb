@@ -4,10 +4,7 @@ import com.hjy.dao.OrderDao;
 import com.hjy.model.Order;
 import com.hjy.util.DatabaseBean;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,14 +32,17 @@ public class OrderDaoImpl implements OrderDao {
         List<Order> orderList = new ArrayList<Order>();
         try {
             conn = DatabaseBean.getConnection();
-            String sql = "select * from tb_order where id=?";
+            String sql = "select * from tb_order where user_id=?";
             psmt = conn.prepareStatement(sql);
+            psmt.setInt(1,userId);
             rs = psmt.executeQuery();
             while (rs.next()) {
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
                 order.setUser_id(rs.getInt("user_id"));
-                order.setTime(rs.getTimestamp("time"));
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Timestamp timestamp = rs.getTimestamp("time");
+                order.setTime(dateFormat.format(timestamp));
                 order.setValue(rs.getDouble("value"));
                 orderList.add(order);
             }
@@ -55,17 +55,17 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void insertOrder(int user_id, double value) {
+    public void insertOrder(int userId, double value) {
         Calendar cal = Calendar.getInstance();
-        java.sql.Timestamp ts = new java.sql.Timestamp(cal.getTime().getTime());
+        java.sql.Timestamp timestamp = new java.sql.Timestamp(cal.getTime().getTime());
 
         try {
             conn = DatabaseBean.getConnection();
             String sql =
                     "INSERT INTO tb_order(id,user_id,time,value) VALUES (order_id.nextval,?,?,?)";
             psmt = conn.prepareStatement(sql);
-            psmt.setInt(1,user_id);
-            psmt.setTimestamp(2, ts);
+            psmt.setInt(1,userId);
+            psmt.setTimestamp(2, timestamp);
             psmt.setDouble(3,value);
             psmt.executeUpdate();
         } catch (SQLException e) {
@@ -80,6 +80,7 @@ public class OrderDaoImpl implements OrderDao {
      * @param args
      */
     public static void main(String[] args) {
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         //get current date time with Date()
         Date date = new Date();
@@ -87,7 +88,7 @@ public class OrderDaoImpl implements OrderDao {
 
 
         OrderDao orderDao =  new OrderDaoImpl();
-        orderDao.insertOrder(1,1);
+        //orderDao.insertOrder(1,1,1);
     }
 
 

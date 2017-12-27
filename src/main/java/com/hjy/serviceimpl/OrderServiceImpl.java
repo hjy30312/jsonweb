@@ -22,4 +22,9 @@ public class OrderServiceImpl implements OrderService {
         orderList = orderDao.selectAllById(userId);
         return orderList;
     }
+
+    @Override
+    public void insertOrder(int userId, double value) {
+        orderDao.insertOrder(userId, value);
+    }
 }

@@ -13,29 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 
-@WebServlet(name = "CommodityHeadServlet", urlPatterns = "/CommodityHead")
-/**
- * @author: hjy
- * @description: 得到购物车的列表头信息
- */
+
+
+@WebServlet(name = "CommodityHeadServlet", urlPatterns = "/commodityHead")
 public class CommodityHeadServlet extends HttpServlet {
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        //读取配置文件
-//        InputStream in = CommodityHeadServlet.class.getResourceAsStream("/commodity.json");
-//        //利用apache.commons.io.IOUtils 将InputStream转换成String  JsonObject文本数据
-//        String result = IOUtils.toString(in,"UTF-8");
-//        //将JsonObject数据转换为Json
-//        JSONObject object = JSON.parseObject(result);
-//        response.setContentType(
-//                "text/plain;charset=utf-8"
-//        );
-//        PrintWriter out = response.getWriter();
-//        out.print(object);
-//        out.close();
         JsonHeadUtil.processRequest(response,"/commodity.json");
     }
 

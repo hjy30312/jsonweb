@@ -10,4 +10,5 @@ import java.util.List;
  **/
 public interface OrderService {
     public List<Order> selectAllById(int userId);
+    public void insertOrder(int usrId, double value);
 }

@@ -1,6 +1,7 @@
 {
   "id":"订单编号",
-  "product_id":"产品编号",
+  "userId":"产品编号",
   "time": "下单时间",
-  "value": "价格"
+  "value": "价格",
+  "function": ""
 }

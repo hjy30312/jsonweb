@@ -1,6 +1,8 @@
 package com.hjy.servlet.ShoppingCart;
 
 import com.hjy.model.User;
+import com.hjy.service.OrderService;
+import com.hjy.serviceimpl.OrderServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +21,15 @@ public class PaymentServlet extends HttpServlet{
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        OrderService orderService = new OrderServiceImpl();
+
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         int user_id = user.getId();
-        String commodity_id = request.getParameter("id");
-        //shoppingCartService.insertShoppingCart(user_id,Integer.parseInt(commodity_id));
+        String commodity_id = request.getParameter("commodity_id");
+        String value = request.getParameter("value");
+
+        orderService.insertOrder(user_id,Integer.parseInt(value));
     }
 
     @Override
