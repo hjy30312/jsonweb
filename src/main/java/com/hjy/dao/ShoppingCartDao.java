@@ -14,7 +14,7 @@ public interface ShoppingCartDao {
      * @param user_id
      * @param commodity_id
      */
-    public void insertShoppingCart(int user_id,int commodity_id);
+    public void insertShoppingCart(int user_id,int commodity_id, double value);
 
     /**
      * 通过用户id找到属于他的购物车
@@ -24,8 +24,8 @@ public interface ShoppingCartDao {
     public List<ShoppingCart> selectAllByUserID(int user_id);
 
     /**
-     * 通过购物车id删除掉改购物车
+     * 通过购物车id删除掉购物车
      * @param id
      */
-    public void deleteOneShoppingCartByid(int id);
+    public void deleteOneShoppingCartById(int id);
 }

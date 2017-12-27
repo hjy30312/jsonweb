@@ -1,9 +1,7 @@
 package com.hjy.servlet.ShoppingCart;
 
-
 import com.hjy.model.User;
 import com.hjy.service.ShoppingCartService;
-import com.hjy.serviceimpl.CommodityServiceImpl;
 import com.hjy.serviceimpl.ShoppingCartServiceImpl;
 
 import javax.servlet.ServletException;
@@ -13,26 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Date;
-
 
 /**
  * @author: hjy
- * @description:
+ * @description:通过购物车ID删除
  */
-@WebServlet(name = "InsertShoppingCartServlet", urlPatterns = "/User/InsertShoppingCartServlet")
-public class InsertShoppingCartServlet extends HttpServlet{
+@WebServlet(name = "DeleteCartServlet", urlPatterns = "/User/DeleteCartServlet")
+public class DeleteCartServlet extends HttpServlet{
 
     private ShoppingCartService shoppingCartService = new ShoppingCartServiceImpl();
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        int user_id = user.getId();
-        String commodity_id = request.getParameter("id");
-        String value = request.getParameter("value");
-        shoppingCartService.insertShoppingCart(user_id,Integer.parseInt(commodity_id),Double.parseDouble(value));
+        String id = request.getParameter("id");
+        shoppingCartService.deleteOneShoppingCartById(Integer.parseInt(id));
     }
 
     @Override
@@ -44,6 +35,4 @@ public class InsertShoppingCartServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request,response);
     }
-
-
 }

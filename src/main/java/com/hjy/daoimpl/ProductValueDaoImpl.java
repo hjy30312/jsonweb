@@ -36,7 +36,7 @@ public class ProductValueDaoImpl implements ProductValueDao {
             conn = DatabaseBean.getConnection();
             String sql = "";
             psmt = conn.prepareStatement(sql);
-            //psmt.setString();
+
             psmt.executeQuery();
             while (rs.next()) {
                 Product_Value product_value = new Product_Value();

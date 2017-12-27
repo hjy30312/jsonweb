@@ -9,7 +9,7 @@ import java.util.List;
  * @create 2017/12/24
  **/
 public interface ShoppingCartService {
-    public void insertShoppingCart(int user_id, int commodity);
+    public void insertShoppingCart(int user_id, int commodity, double value);
     public List<ShoppingCart> selectAllByUserID(int user_id);
-    public void deleteOneShoppingCartByid(int id);
+    public void deleteOneShoppingCartById(int id);
 }

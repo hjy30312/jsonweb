@@ -4,11 +4,11 @@
 <head>
     <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
     <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.css" rel="stylesheet">
-   <script>
-       $(document).on('dblclick','.qqq',function () {
-           alert("123");
-       });
-   </script>
+    <script>
+        $(document).on('dblclick','.qqq',function () {
+            alert("123");
+        });
+    </script>
     <!--字符串拼接模板-->
     <script>
         var format = function (str, data) {
@@ -139,7 +139,7 @@
                     success: function (result) {
                         $("#lefthead").empty();
                         var json = eval(result);
-                        
+
                         var html = "<tr>"
                             +   "<td><span class=\"qqq\">{#id#}</span></td>"
                             +   "<td>{#name#}</td>"
@@ -263,33 +263,6 @@
                     + "</td>"
                     + "</tr>";
                 $("#leftcontent").append(html);
-            });
-        })
-    </script>
-    <!--拼接订单信息头部-->
-    <script type="text/javascript">
-        $(function () {
-            $("#UpdatePassword").click(function () {
-                //发送ajax
-                $.ajax({
-                    url: "/User/UpdatePasswordHeadServlet",
-                    type: "post",
-                    dataType: "json",
-                    success: function (result) {
-                        var json = eval(result);
-                        $("#lefthead").empty();
-                        $("#righthead").empty();
-
-                        var html = "<tr>"
-                            + "<td><span class='qqq'>{#id#}</span></td>"
-                            + "<td>{#product_id#}</td>"
-                            + "<td>{#time#}</td>"
-                            + "<td>{#value#}</td>"
-                            + "</tr>";
-                        var element = format(html, json);
-                        $("#lefthead").append(element);
-                    }
-                })
             });
         })
     </script>

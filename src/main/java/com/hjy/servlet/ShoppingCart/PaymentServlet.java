@@ -23,7 +23,7 @@ public class PaymentServlet extends HttpServlet{
         User user = (User) session.getAttribute("user");
         int user_id = user.getId();
         String commodity_id = request.getParameter("id");
-        shoppingCartService.insertShoppingCart(user_id,Integer.parseInt(commodity_id));
+        //shoppingCartService.insertShoppingCart(user_id,Integer.parseInt(commodity_id));
     }
 
     @Override

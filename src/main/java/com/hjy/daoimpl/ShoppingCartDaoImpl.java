@@ -25,17 +25,15 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     PreparedStatement psmt = null;
     ResultSet rs = null;
 
-    int i = 0;
     @Override
-    public void insertShoppingCart(int user_id, int commodity_id) {
+    public void insertShoppingCart(int user_id, int commodity_id, double value) {
         try {
             conn = DatabaseBean.getConnection();
-            String sql = "INSERT INTO tb_ShoppingCart(id,user_id,commodity_id,value) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO tb_ShoppingCart(id,user_id,commodity_id,value) VALUES (ShoppingCart_id.nextval,?,?,?)";
             psmt = conn.prepareStatement(sql);
-            psmt.setInt(1, i++);
-            psmt.setInt(2, user_id);
-            psmt.setInt(3, commodity_id);
-            psmt.setInt(4, i);
+            psmt.setInt(1, user_id);
+            psmt.setInt(2, commodity_id);
+            psmt.setDouble(3,value);
             psmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,7 +68,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     }
 
     @Override
-    public void deleteOneShoppingCartByid(int id) {
+    public void deleteOneShoppingCartById(int id) {
         try {
             conn = DatabaseBean.getConnection();
             String sql = "DELETE FROM tb_ShoppingCart WHERE id=?";

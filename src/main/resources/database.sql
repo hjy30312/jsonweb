@@ -9,20 +9,25 @@ CREATE TABLE tb_user(
 
 INSERT INTO tb_user(id,username, password) VALUES (user_id.nextval,'123','456');
 
-
+/**产品表：
+  id 产品编号
+  name 名称
+  manufacturer 生产厂家
+  describe 说明
+  value 价格
+ */
 DROP TABLE tb_commodity;
 DROP SEQUENCE commodity_id;
 CREATE SEQUENCE commodity_id INCREMENT BY 1 START WITH 1;
 CREATE TABLE tb_commodity(
     id INT PRIMARY KEY,
     name VARCHAR2(20) ,
-    type VARCHAR2(20) ,
     manufacturer VARCHAR2(20),
     describe VARCHAR2(20),
     value NUMBER(4,2)
 );
 INSERT INTO tb_commodity(id,name,type,manufacturer,describe,value) VALUES (commodity_id.nextval,'书','文具','汽院','','1');
-INSERT INTO tb_commodity(id,name,type,manufacturer,describe,value) VALUES (commodity_id.nextval,'2','笔','文具','汽院','','1');
+INSERT INTO tb_commodity(id,name,type,manufacturer,describe,value) VALUES (commodity_id.nextval,'笔','文具','汽院','','80');
 
 DROP TABLE tb_ShoppingCart;
 DROP SEQUENCE ShoppingCart_id;
@@ -58,12 +63,12 @@ CREATE TABLE tb_order(
   count 数量
   all_value 总价格
  */
-CREATE TABLE order_product(
-  order_id,
-  product_id,
-  value DECIMAL,
-  count ,
-  all_value DECIMAL
+CREATE TABLE tb_order_product(
+  order_id INT ,
+  product_id INT ,
+  value NUMBER (4,2),
+  count INT ,
+  all_value NUMBER (4,2)
 );
 /**产品表：
   id 产品编号
@@ -71,12 +76,7 @@ CREATE TABLE order_product(
   manufacturer 生产厂家
   describe 说明
  */
-CREATE TABLE taobao_product(
-  id INT  PRIMARY KEY ,
-  name VARCHAR NOT NULL ,
-  manufacturer VARCHAR,
-  describe VARCHAR
-);
+
 /**价格表：
   id 产品编号
   value 价格

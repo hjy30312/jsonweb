@@ -37,9 +37,6 @@ public class ShoppingCartListServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = new User();
         user = (User) session.getAttribute("user");
-       // System.out.println("user:"+ user);
-
-        //System.out.println("pass"+ user.getPassword());
         cartList = cartService.selectAllByUserID(user.getId());
 
         String jsonObject = JSON.toJSONString(cartList);

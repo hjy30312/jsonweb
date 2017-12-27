@@ -2,6 +2,6 @@
   "id":"购物车编号",
   "user_id":"用户id",
   "commodity_id": "商品id",
-  "values": "价格",
+  "value": "价格",
   "functions": "功能"
 }

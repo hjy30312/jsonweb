@@ -17,8 +17,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private ShoppingCartDao shoppingCartDao = new ShoppingCartDaoImpl();
 
     @Override
-    public void insertShoppingCart(int user_id, int commodity_id) {
-        shoppingCartDao.insertShoppingCart(user_id,commodity_id);
+    public void insertShoppingCart(int user_id, int commodity_id, double value) {
+        shoppingCartDao.insertShoppingCart(user_id,commodity_id,value);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public void deleteOneShoppingCartByid(int id) {
-        shoppingCartDao.deleteOneShoppingCartByid(id);
+    public void deleteOneShoppingCartById(int id) {
+        shoppingCartDao.deleteOneShoppingCartById(id);
     }
 }
