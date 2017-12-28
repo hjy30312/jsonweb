@@ -1,74 +1,70 @@
+
+/**
+ * 用户表
+ */
 DROP TABLE tb_user;
 DROP SEQUENCE user_id;
 CREATE SEQUENCE user_id INCREMENT BY 1 START WITH 1;
 CREATE TABLE tb_user(
-  id INTEGER PRIMARY KEY ,
-  username VARCHAR(20) ,
-  password VARCHAR(20)
+  id INTEGER PRIMARY KEY , --用户id
+  username VARCHAR(20) NOT NULL ,    --用户名称
+  password VARCHAR(20) NOT NULL      --用户密码
 );
-
 INSERT INTO tb_user(id,username, password) VALUES (user_id.nextval,'123','456');
 
-/**产品表：
-  id 产品编号
-  name 名称
-  manufacturer 生产厂家
-  describe 说明
-  value 价格
+/**
+ * 产品表
  */
 DROP TABLE tb_commodity;
 DROP SEQUENCE commodity_id;
 CREATE SEQUENCE commodity_id INCREMENT BY 1 START WITH 1;
 CREATE TABLE tb_commodity(
-    id INT PRIMARY KEY,
-    name VARCHAR2(20) ,
-    manufacturer VARCHAR2(20),
-    describe VARCHAR2(20),
-    value NUMBER(4,2)
+    id INT PRIMARY KEY,       --产品编号
+    name VARCHAR2(20) NOT NULL,        --产品名称
+    manufacturerId VARCHAR2(20), --生产厂家编号
+    describe VARCHAR2(20),     --说明
+    value NUMBER(4,2)         --价格
 );
 INSERT INTO tb_commodity(id,name,type,manufacturer,describe,value) VALUES (commodity_id.nextval,'书','文具','汽院','','1');
 INSERT INTO tb_commodity(id,name,type,manufacturer,describe,value) VALUES (commodity_id.nextval,'笔','文具','汽院','','80');
 
+
+
+/**
+ * 购物车表
+ */
 DROP TABLE tb_ShoppingCart;
 DROP SEQUENCE ShoppingCart_id;
 CREATE SEQUENCE ShoppingCart_id INCREMENT BY 1 START WITH 1;
 CREATE TABLE tb_ShoppingCart(
-    id INT PRIMARY KEY ,
-    user_id INT ,
-    commodity_id INT ,
-    value NUMBER (4,2)
+    id INT PRIMARY KEY ,  --购物车id
+    user_id INT ,          --用户id
+    commodity_id INT ,     --商品id
+    count INT ,            --商品数量
+    value NUMBER (4,2)     --价格
+    CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES tb_user(id) ON DELETE CASCADE
 );
 INSERT INTO tb_ShoppingCart(id,user_id,commodity_id,value) VALUES (ShoppingCart_id.nextval,'','','')
 
 
-/** 订单表：
- id 订单编号
- user 客户
- time 时间
- value 价格
-小数类型为 decimal ，禁止使用 float 和 double 。
-说明： float 和 double 在存储的时候，存在精度损失的问题，很可能在值的比较时，得到不
-正确的结果。如果存储的数据范围超过 decimal 的范围，建议将数据拆成整数和小数分开存储。
+/**
+ * 订单表
  */
 CREATE TABLE tb_order(
-  id INT PRIMARY KEY,
-  user_id VARCHAR, --客户id
-  time DATA,       --下单时间
-  value NUMBER (4,2)   --价格
+  id INT PRIMARY KEY,   --订单编号
+  user_id VARCHAR,       --客户id
+  time DATA,             --下单时间
+  value NUMBER (4,2)     --订单价格
 );
-/** 订单明细表：
-  order_id 订单编号
-  product_id 产品编号
-  value 单价
-  count 数量
-  all_value 总价格
+/**
+ * 订单明细表
  */
 CREATE TABLE tb_order_product(
-  order_id INT ,
-  product_id INT ,
-  value NUMBER (4,2),
-  count INT ,
-  all_value NUMBER (4,2)
+  order_id INT ,     --订单编号
+  product_id INT ,   --产品编号
+  value NUMBER (4,2),   --单价
+  count INT ,           --数量
+  all_value NUMBER (4,2)  --总价格
 );
 /**产品表：
   id 产品编号
